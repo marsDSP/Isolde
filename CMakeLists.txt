@@ -75,7 +75,11 @@ juce_add_plugin("${PROJECT_NAME}"
 add_compile_definitions(JUCE_PROJECT_NAME="${PROJECT_NAME}")
 
 # Define SharedCode as an INTERFACE library (no sources required)
-add_library(SharedCode INTERFACE)
+add_library(SharedCode INTERFACE
+        source/Includes.h
+        source/Globals.h
+        source/Smoother.h
+        source/Parameters.h)
 
 # Set compile features for SharedCode
 target_compile_features(SharedCode INTERFACE cxx_std_20)
