@@ -78,9 +78,7 @@ void PluginProcessor::changeProgramName (int index, const juce::String& newName)
 //==============================================================================
 void PluginProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    // Use this method as the place to do any pre-playback
-    // initialisation that you need..
-    juce::ignoreUnused (sampleRate, samplesPerBlock);
+    dsp.prepareDSP(sampleRate, (juce::uint32)samplesPerBlock, (juce::uint32)getTotalNumOutputChannels(), params);
 }
 
 void PluginProcessor::releaseResources()
@@ -114,7 +112,10 @@ bool PluginProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
 void PluginProcessor::processBlock (juce::AudioBuffer<float>& buffer,
                                               juce::MidiBuffer& midiMessages)
 {
+    juce::ScopedNoDenormals noDenormals;
     juce::ignoreUnused (midiMessages);
+
+    dsp.process(buffer);
 }
 
 //==============================================================================

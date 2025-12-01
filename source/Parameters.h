@@ -18,6 +18,7 @@ namespace MarsDSP {
             castParameter(vts, bufferParamID, buffer);
             castParameter(vts, outputParamID, output);
             castParameter(vts, drywetParamID, drywet);
+            castParameter(vts, bypassParamID, bypass);
         }
 
         static juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout()
@@ -30,15 +31,15 @@ namespace MarsDSP {
 
             layout.add(std::make_unique<juce::AudioParameterFloat>
                 (randoParamID, randoParamIDName, juce::NormalisableRange<float>
-                { 0.0f, 1.0f }, 0.5f));
+                { 0.0f, 1.0f }, 0.75f));
 
             layout.add(std::make_unique<juce::AudioParameterFloat>
                 (depthParamID, depthParamIDName, juce::NormalisableRange<float>
-                { 0.0f, 1.0f }, 0.5f));
+                { 0.0f, 1.0f }, 0.75f));
 
             layout.add(std::make_unique<juce::AudioParameterFloat>
                 (regenParamID, regenParamIDName, juce::NormalisableRange<float>
-                { 0.0f, 1.0f }, 0.5f));
+                { 0.0f, 1.0f }, 0.1f));
 
             layout.add(std::make_unique<juce::AudioParameterFloat>
                 (derezParamID, derezParamIDName, juce::NormalisableRange<float>
@@ -46,7 +47,7 @@ namespace MarsDSP {
 
             layout.add(std::make_unique<juce::AudioParameterFloat>
                 (bufferParamID, bufferParamIDName, juce::NormalisableRange<float>
-                { 0.0f, 1.0f }, 0.5f));
+                { 0.0f, 1.0f }, 0.05f));
 
             layout.add(std::make_unique<juce::AudioParameterFloat>
                 (outputParamID, outputParamIDName, juce::NormalisableRange<float>
@@ -54,7 +55,11 @@ namespace MarsDSP {
 
             layout.add(std::make_unique<juce::AudioParameterFloat>
                 (drywetParamID, drywetParamIDName, juce::NormalisableRange<float>
-                { 0.0f, 1.0f }, 0.5f));
+                { 0.0f, 1.0f }, 0.75f));
+
+            // Bypass
+            layout.add(std::make_unique<juce::AudioParameterBool>
+                (bypassParamID, bypassParamIDName, false));
 
             return layout;
         }
@@ -69,6 +74,8 @@ namespace MarsDSP {
         juce::AudioParameterFloat* buffer {nullptr};
         juce::AudioParameterFloat* output {nullptr};
         juce::AudioParameterFloat* drywet {nullptr};
+
+        juce::AudioParameterBool*  bypass {nullptr};
 
     private:
 

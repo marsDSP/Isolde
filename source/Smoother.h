@@ -72,23 +72,23 @@ namespace MarsDSP
                 smoother.setTargetValue(speedNew);
 
             const float randoNew = params.rando->get();
-            for (auto& smoother : speedSmoother)
+            for (auto& smoother : randoSmoother)
                 smoother.setTargetValue(randoNew);
 
             const float depthNew = params.depth->get();
-            for (auto& smoother : randoSmoother)
+            for (auto& smoother : depthSmoother)
                 smoother.setTargetValue(depthNew);
 
             const float regenNew = params.regen->get();
-            for (auto& smoother : depthSmoother)
+            for (auto& smoother : regenSmoother)
                 smoother.setTargetValue(regenNew);
 
             const float derezNew = params.derez->get();
-            for (auto& smoother : regenSmoother)
+            for (auto& smoother : derezSmoother)
                 smoother.setTargetValue(derezNew);
 
             const float bufferNew = params.buffer->get();
-            for (auto& smoother : derezSmoother)
+            for (auto& smoother : bufferSmoother)
                 smoother.setTargetValue(bufferNew);
 
             const float outDB = params.output->get();

@@ -79,7 +79,10 @@ add_library(SharedCode INTERFACE
         source/Includes.h
         source/Globals.h
         source/Smoother.h
-        source/Parameters.h)
+        source/Parameters.h
+        source/DSP/ProcessDSP.h
+        source/DSP/BaseDSP.h
+        source/DSP/ModDSP.h)
 
 # Set compile features for SharedCode
 target_compile_features(SharedCode INTERFACE cxx_std_20)

@@ -25,3 +25,6 @@ static constexpr const char* outputParamIDName = "Output";
 
 inline const juce::ParameterID drywetParamID { "drywet", 1 };
 static constexpr const char* drywetParamIDName = "DryWet";
+
+inline const juce::ParameterID bypassParamID { "bypass", 1 };
+static constexpr const char* bypassParamIDName = "Bypass";
